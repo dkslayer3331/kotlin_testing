@@ -8,9 +8,11 @@ class RetrofitUtils private constructor(){
 
     val retrofit : Retrofit
 
+    val base_url : String = "https://api.themoviedb.org/3/"
+
     init {
         retrofit = Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/movie/")
+            .baseUrl(base_url)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
