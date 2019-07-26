@@ -14,7 +14,7 @@ abstract class BaseRecyclerAdapter<T : BaseViewHolder<*>,W>(context: Context) : 
 
     init {
         layoutInflater = LayoutInflater.from(context)
-        data = ArrayList()
+        data = listOf()
     }
 
     override fun getItemCount(): Int {
