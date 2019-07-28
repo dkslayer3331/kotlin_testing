@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
+        android:layout_margin="2dp"
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="115dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
+    <ImageView
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:id="@+id/movie_poster"
+            tools:src="@drawable/digimon"
+            android:layout_width="match_parent"
+            android:layout_height="150dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+            android:id="@+id/movie_title"
+            android:background="#808080"
+            android:textColor="#ffffff"
+            tools:text="The Shape of Water"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
+
+    <TextView
+            android:id="@+id/release_year"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:background="#808080"
+            android:textColor="#ffffff"
+            tools:text="2019"/>
+
+</LinearLayout>
