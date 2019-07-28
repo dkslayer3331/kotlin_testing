@@ -7,6 +7,7 @@ import com.nwt.first_kotlin_test.data.viewmodels.AppViewModel
 import com.nwt.first_kotlin_test.vos.MovieListVO
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,10 +19,8 @@ class MainActivity : AppCompatActivity() {
 
        appViewModel = ViewModelProviders.of(this).get(AppViewModel::class.java)
 
-        appViewModel.getPopular().subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { t: MovieListVO? -> println(t?.results?.size)  }
-
 
     }
+
+
 }

@@ -29,5 +29,4 @@ interface MoviesAPI {
     @GET("movie/popular")
     fun getPopularMovies(@Query("api_key") apiKey: String): Observable<MovieListVO>
 
-
 }
