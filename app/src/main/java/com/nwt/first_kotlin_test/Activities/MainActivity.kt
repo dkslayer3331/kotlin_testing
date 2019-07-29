@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), ClickMovieDetail {
         })
 
         appViewModel.viewState.observe(this, Observer {
-            renderUpcoming(state)
+            renderUpcoming(it)
         })
 
         popular_movies_rv.setHasFixedSize(true)
