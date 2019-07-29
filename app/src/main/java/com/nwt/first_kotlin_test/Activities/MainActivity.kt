@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity(), ClickMovieDetail {
             render(it)
         })
 
-        appViewModel.viewState.observe(this, Observer {
+        appViewModel.upcomingViewState.observe(this, Observer {
             renderUpcoming(it)
         })
 
