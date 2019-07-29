@@ -1,19 +1,18 @@
-package com.nwt.first_kotlin_test
+package com.nwt.first_kotlin_test.Activities
 
 import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Html
 import android.text.Html.FROM_HTML_MODE_LEGACY
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
+import com.nwt.first_kotlin_test.DetailViewState
+import com.nwt.first_kotlin_test.R
 import com.nwt.first_kotlin_test.Utils.toast
 import com.nwt.first_kotlin_test.data.viewmodels.AppViewModel
 import com.nwt.first_kotlin_test.vos.MovieVO
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_movie_detail.*
 
 class MovieDetailActivity : AppCompatActivity() {

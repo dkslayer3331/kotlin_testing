@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.nwt.first_kotlin_test.DetailViewState
 import com.nwt.first_kotlin_test.MainViewState
+import com.nwt.first_kotlin_test.UpcomingViewState
 import com.nwt.first_kotlin_test.data.Repository.MoviesRepository
 import com.nwt.first_kotlin_test.data.db.AppDatabase
 import com.nwt.first_kotlin_test.vos.MovieListVO
@@ -26,6 +27,8 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     var detailViewState : MutableLiveData<DetailViewState> = MutableLiveData()
 
+    var upcomingViewState : MutableLiveData<UpcomingViewState> = MutableLiveData()
+
     init {
         appDatabase = AppDatabase.getInMemoryDatabase(application.applicationContext)
         moviesRepository = MoviesRepository.getInstance(appDatabase.favDao())
@@ -43,15 +46,33 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 //        return moviesRepository.getPopularMovies()
 //    }
 
-//    fun getMovieDetail(id:Long) : Observable<MovieVO>{
-//        return moviesRepository.getMovieDetail(id)
-//    }
+    fun getUpcomingMovies(){
+        moviesRepository.getUpcomingMovies()
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
+            .doOnSubscribe {
+                upcomingViewState.postValue(UpcomingViewState.Loading)
+            }
+            .subscribe({
+                t -> upcomingViewState.postValue(UpcomingViewState.Success(t.results))
+            },{
+                t -> upcomingViewState.postValue(UpcomingViewState.Error(t.localizedMessage))
+            })
+    }
+
 
     fun getMovieDetail(id : Long) {
         moviesRepository.getMovieDetail(id)
             .doOnSubscribe { t ->detailViewState.postValue(DetailViewState.MovieDetailViewStateLoading) }
             .doOnError { t -> detailViewState.postValue(DetailViewState.MovieDetailViewStateFail(t.localizedMessage)) }
             .subscribe{ t -> detailViewState.postValue(DetailViewState.MovieDetailViewStateSuccess(t))  }
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        viewState.value = null
+        detailViewState.value = null
+        upcomingViewState.value = null
     }
 
 }
