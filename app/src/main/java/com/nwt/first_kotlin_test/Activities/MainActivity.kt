@@ -53,16 +53,8 @@ class MainActivity : AppCompatActivity(), ClickMovieDetail {
 
         upcomingMoviesAdapter = UpcomingMoviesAdapter(this,this)
 
-        appViewModel.popular()
-
-        appViewModel.getUpcomingMovies()
-
         appViewModel.viewState.observe(this, Observer {
             render(it)
-        })
-
-        appViewModel.upcomingViewState.observe(this, Observer {
-            renderUpcoming(it)
         })
 
         popular_movies_rv.setHasFixedSize(true)
@@ -83,48 +75,27 @@ class MainActivity : AppCompatActivity(), ClickMovieDetail {
         }
     }
 
-    private fun renderUpcoming(state : UpcomingViewState){
-        when(state){
-            is UpcomingViewState.Loading -> upcomingLoading()
-            is UpcomingViewState.Success -> upcomingSuccess(state)
-            is UpcomingViewState.Error -> upcomingError(state)
-    }
-    }
 
     private fun renderPopularMovieLoadingState() {
         showDialogPopular = true
         showLoading()
     }
 
-    private fun upcomingLoading(){
-        showDialogUpcoming = true
-        showLoading()
-    }
-
     private fun renderPopularMovieSuccessState(state: MainViewState.PopularMovieSuccessState) {
         progressDialog.hide()
         popularMoviesAdapter.setNewData(state.list)
+        upcomingMoviesAdapter.setNewData(state.upcoing)
     }
-
-    private fun upcomingSuccess(state : UpcomingViewState.Success){
-        upcomingMoviesAdapter.setNewData(state.movieList)
-    }
-
+    
     private fun renderPopularMovieFailState(state: MainViewState.PopularMovieFailState) {
         progressDialog.hide()
         toast(state.message)
     }
 
-    private fun upcomingError(state : UpcomingViewState.Error){
-        toast(state.message)
-    }
-
     private fun showLoading(){
-        if(showDialogPopular && showDialogUpcoming) {
             progressDialog.setMessage("Loading...")
             progressDialog.setCancelable(false)
             progressDialog.show()
-        }
     }
 
 }

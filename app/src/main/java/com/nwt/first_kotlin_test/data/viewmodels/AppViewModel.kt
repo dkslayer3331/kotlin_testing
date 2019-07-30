@@ -32,34 +32,22 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     init {
         appDatabase = AppDatabase.getInMemoryDatabase(application.applicationContext)
         moviesRepository = MoviesRepository.getInstance(appDatabase.favDao())
+        mainScreenData()
     }
 
-    fun popular(){
+    private fun mainScreenData(){
+        var list : List<MovieVO> = emptyList()
         moviesRepository.getPopularMovies()
-            .doOnSubscribe { t -> viewState.postValue(MainViewState.PopularMoviesLoadingState)  }
-            .doOnError { t -> viewState.postValue(MainViewState.PopularMovieFailState(t.localizedMessage)) }
-            .subscribe { t -> viewState.postValue(MainViewState.PopularMovieSuccessState(t.results)) }
-    }
-
-
-//    fun getUpcoming() : Observable<MovieListVO>{
-//        return moviesRepository.getPopularMovies()
-//    }
-
-    fun getUpcomingMovies(){
-        moviesRepository.getUpcomingMovies()
+            .flatMap {
+                list = it.results
+                moviesRepository.getUpcomingMovies()
+            }
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
-            .doOnSubscribe {
-                upcomingViewState.postValue(UpcomingViewState.Loading)
-            }
-            .subscribe({
-                t -> upcomingViewState.postValue(UpcomingViewState.Success(t.results))
-            },{
-                t -> upcomingViewState.postValue(UpcomingViewState.Error(t.localizedMessage))
-            })
+            .doOnSubscribe { viewState.postValue(MainViewState.PopularMoviesLoadingState)  }
+            .doOnError { viewState.postValue(MainViewState.PopularMovieFailState(it.localizedMessage)) }
+            .subscribe { viewState.postValue(MainViewState.PopularMovieSuccessState(list, it.results)) }
     }
-
 
     fun getMovieDetail(id : Long) {
         moviesRepository.getMovieDetail(id)
