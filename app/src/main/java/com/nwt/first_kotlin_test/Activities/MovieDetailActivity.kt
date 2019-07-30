@@ -7,7 +7,10 @@ import android.text.Html.FROM_HTML_MODE_LEGACY
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.AdapterListUpdateCallback
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.nwt.first_kotlin_test.Adapters.GenreAdapter
 import com.nwt.first_kotlin_test.DetailViewState
 import com.nwt.first_kotlin_test.R
 import com.nwt.first_kotlin_test.Utils.toast
@@ -19,7 +22,10 @@ class MovieDetailActivity : AppCompatActivity() {
 
     lateinit var dialog : ProgressDialog
 
+    lateinit var genreAdapter: GenreAdapter
+
     fun setupView(movieVO : MovieVO){
+
         //movie_detail_title.text = movieVO.title
         movie_detail_title.text = HtmlCompat.fromHtml(getString(R.string.movie_title,movieVO.title),FROM_HTML_MODE_LEGACY)
 
@@ -30,6 +36,8 @@ class MovieDetailActivity : AppCompatActivity() {
             .into(movie_detail_poster)
 
         movie_detail_screentime.text = movieVO.runtime.toString()
+
+        genreAdapter.setNewData(movieVO.genres)
 
     }
 
@@ -62,6 +70,10 @@ class MovieDetailActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_detail)
+
+        genreAdapter = GenreAdapter(this)
+
+        genre_rv.adapter = genreAdapter
 
         dialog = ProgressDialog(this@MovieDetailActivity)
 
