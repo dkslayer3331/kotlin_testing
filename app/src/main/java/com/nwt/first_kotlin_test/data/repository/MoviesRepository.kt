@@ -1,14 +1,11 @@
-package com.nwt.first_kotlin_test.data.Repository
+package com.nwt.first_kotlin_test.data.repository
 
-import com.nwt.first_kotlin_test.MainViewState
-import com.nwt.first_kotlin_test.data.Repository.local.LocalDataSource
-import com.nwt.first_kotlin_test.data.Repository.remote.RemoteDataSource
+import com.nwt.first_kotlin_test.data.repository.local.LocalDataSource
+import com.nwt.first_kotlin_test.data.repository.remote.RemoteDataSource
 import com.nwt.first_kotlin_test.data.db.MoviesDao
 import com.nwt.first_kotlin_test.vos.MovieListVO
 import com.nwt.first_kotlin_test.vos.MovieVO
 import io.reactivex.Observable
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
 class MoviesRepository private constructor(localDataSource: LocalDataSource,remoteDataSource: RemoteDataSource){

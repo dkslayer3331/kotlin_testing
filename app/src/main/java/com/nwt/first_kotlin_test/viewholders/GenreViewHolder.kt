@@ -1,4 +1,4 @@
-package com.nwt.first_kotlin_test.ViewHolders
+package com.nwt.first_kotlin_test.viewholders
 
 import android.view.View
 import com.nwt.first_kotlin_test.vos.GenreVO

@@ -1,4 +1,4 @@
-package com.nwt.first_kotlin_test.data.Repository.local
+package com.nwt.first_kotlin_test.data.repository.local
 
 import com.nwt.first_kotlin_test.data.db.MoviesDao
 import com.nwt.first_kotlin_test.vos.FavMovieVO

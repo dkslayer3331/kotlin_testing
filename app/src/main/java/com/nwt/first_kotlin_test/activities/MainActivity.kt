@@ -1,4 +1,4 @@
-package com.nwt.first_kotlin_test.Activities
+package com.nwt.first_kotlin_test.activities
 
 import android.app.ProgressDialog
 import android.content.Intent
@@ -6,13 +6,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.nwt.first_kotlin_test.Adapters.PopularMoviesAdapter
-import com.nwt.first_kotlin_test.Adapters.UpcomingMoviesAdapter
-import com.nwt.first_kotlin_test.Delegates.ClickMovieDetail
+import com.nwt.first_kotlin_test.adapters.PopularMoviesAdapter
+import com.nwt.first_kotlin_test.adapters.UpcomingMoviesAdapter
+import com.nwt.first_kotlin_test.delegates.ClickMovieDetail
 import com.nwt.first_kotlin_test.MainViewState
 import com.nwt.first_kotlin_test.R
-import com.nwt.first_kotlin_test.UpcomingViewState
-import com.nwt.first_kotlin_test.Utils.toast
+import com.nwt.first_kotlin_test.utils.toast
 import com.nwt.first_kotlin_test.data.viewmodels.AppViewModel
 import com.nwt.first_kotlin_test.vos.MovieVO
 import kotlinx.android.synthetic.main.activity_main.*
