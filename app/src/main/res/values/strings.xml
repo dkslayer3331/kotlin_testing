@@ -10,4 +10,5 @@
     <string name="movie_title"><![CDATA[<big>%1s</big>]]></string>
     <string name="screen_time">1hr 40 min</string>
     <string name="casts_caption"><![CDATA[<big>Casts</big>]]></string>
+    <string name="known_for_caption">Known For</string>
 </resources>

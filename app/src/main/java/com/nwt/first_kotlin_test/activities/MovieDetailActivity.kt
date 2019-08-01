@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_movie_detail.*
 class MovieDetailActivity : AppCompatActivity(),ClickCastDetail {
 
     override fun onTapCast(castVO: CastVO?) {
-
+            
     }
 
     lateinit var dialog : ProgressDialog
