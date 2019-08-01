@@ -1,4 +1,4 @@
-package com.nwt.first_kotlin_test.Delegates
+package com.nwt.first_kotlin_test.delegates
 
 import com.nwt.first_kotlin_test.vos.MovieVO
 

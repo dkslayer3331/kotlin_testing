@@ -6,7 +6,7 @@ sealed class MainViewState {
 
     object PopularMoviesLoadingState : MainViewState()
 
-    data class PopularMovieSuccessState(val list : List<MovieVO>) : MainViewState()
+    data class PopularMovieSuccessState(val list : List<MovieVO>, val upcoing : List<MovieVO>) : MainViewState()
 
     data class PopularMovieFailState(val message : String) : MainViewState()
 

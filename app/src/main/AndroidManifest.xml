@@ -14,9 +14,9 @@
             android:theme="@style/AppTheme">
         <activity android:name=".Activities.ActorDetailActivity">
         </activity>
-        <activity android:name=".Activities.MovieDetailActivity">
+        <activity android:name=".activities.MovieDetailActivity">
         </activity>
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

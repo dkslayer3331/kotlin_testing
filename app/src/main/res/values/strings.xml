@@ -9,4 +9,5 @@
     <string name="add_to_fav">+ Add To Favourites</string>
     <string name="movie_title"><![CDATA[<big>%1s</big>]]></string>
     <string name="screen_time">1hr 40 min</string>
+    <string name="casts_caption"><![CDATA[<big>Casts</big>]]></string>
 </resources>

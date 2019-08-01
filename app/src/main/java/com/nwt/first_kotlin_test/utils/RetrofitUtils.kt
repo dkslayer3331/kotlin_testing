@@ -1,4 +1,4 @@
-package com.nwt.first_kotlin_test.Utils
+package com.nwt.first_kotlin_test.utils
 
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

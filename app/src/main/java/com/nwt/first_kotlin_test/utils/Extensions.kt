@@ -1,4 +1,4 @@
-package com.nwt.first_kotlin_test.Utils
+package com.nwt.first_kotlin_test.utils
 
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity

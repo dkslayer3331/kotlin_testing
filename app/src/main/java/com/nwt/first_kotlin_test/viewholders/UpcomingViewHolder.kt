@@ -1,8 +1,8 @@
-package com.nwt.first_kotlin_test.ViewHolders
+package com.nwt.first_kotlin_test.viewholders
 
 import android.view.View
 import com.bumptech.glide.Glide
-import com.nwt.first_kotlin_test.Delegates.ClickMovieDetail
+import com.nwt.first_kotlin_test.delegates.ClickMovieDetail
 import com.nwt.first_kotlin_test.R
 import com.nwt.first_kotlin_test.vos.MovieVO
 import kotlinx.android.synthetic.main.movie_card.view.*

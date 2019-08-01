@@ -1,9 +1,9 @@
-package com.nwt.first_kotlin_test.Adapters
+package com.nwt.first_kotlin_test.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.RecyclerView
-import com.nwt.first_kotlin_test.ViewHolders.BaseViewHolder
+import com.nwt.first_kotlin_test.viewholders.BaseViewHolder
 
 
 abstract class BaseRecyclerAdapter<T : BaseViewHolder<*>,W>(context: Context) : RecyclerView.Adapter<T>() {

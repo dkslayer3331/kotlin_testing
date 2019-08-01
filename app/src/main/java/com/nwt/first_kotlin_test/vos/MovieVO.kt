@@ -10,5 +10,6 @@ data class MovieVO (
     @SerializedName("runtime") val runtime : Long = 0,
     @SerializedName("title") val title : String = "",
     @SerializedName("overview") val overview : String = "",
-    @SerializedName("release_date") val release_date : String = ""
+    @SerializedName("release_date") val release_date : String = "",
+    @SerializedName("credits") val credits : AllCreditsVO
     )

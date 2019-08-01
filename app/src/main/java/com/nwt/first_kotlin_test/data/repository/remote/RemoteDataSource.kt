@@ -1,6 +1,6 @@
-package com.nwt.first_kotlin_test.data.Repository.remote
+package com.nwt.first_kotlin_test.data.repository.remote
 
-import com.nwt.first_kotlin_test.Utils.RetrofitUtils
+import com.nwt.first_kotlin_test.utils.RetrofitUtils
 import com.nwt.first_kotlin_test.vos.CastVO
 import com.nwt.first_kotlin_test.vos.MovieListVO
 import com.nwt.first_kotlin_test.vos.MovieVO
