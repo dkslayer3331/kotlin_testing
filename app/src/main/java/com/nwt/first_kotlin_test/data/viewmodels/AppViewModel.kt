@@ -3,9 +3,10 @@ package com.nwt.first_kotlin_test.data.viewmodels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.nwt.first_kotlin_test.DetailViewState
-import com.nwt.first_kotlin_test.MainViewState
-import com.nwt.first_kotlin_test.UpcomingViewState
+import com.nwt.first_kotlin_test.ViewState.CastDetailViewState
+import com.nwt.first_kotlin_test.ViewState.DetailViewState
+import com.nwt.first_kotlin_test.ViewState.MainViewState
+import com.nwt.first_kotlin_test.ViewState.UpcomingViewState
 import com.nwt.first_kotlin_test.data.repository.MoviesRepository
 import com.nwt.first_kotlin_test.data.db.AppDatabase
 import com.nwt.first_kotlin_test.vos.MovieVO
@@ -22,6 +23,8 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     var detailViewState : MutableLiveData<DetailViewState> = MutableLiveData()
 
     var upcomingViewState : MutableLiveData<UpcomingViewState> = MutableLiveData()
+
+    var castDetailViewState : MutableLiveData<CastDetailViewState> =  MutableLiveData()
 
     init {
         appDatabase = AppDatabase.getInMemoryDatabase(application.applicationContext)
@@ -48,6 +51,13 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
             .doOnSubscribe { t ->detailViewState.postValue(DetailViewState.MovieDetailViewStateLoading) }
             .doOnError { t -> detailViewState.postValue(DetailViewState.MovieDetailViewStateFail(t.localizedMessage)) }
             .subscribe{ t -> detailViewState.postValue(DetailViewState.MovieDetailViewStateSuccess(t))  }
+    }
+
+    fun getCastDetail(id : Long){
+        moviesRepository.getCastDetail(id)
+            .doOnSubscribe{ t -> castDetailViewState.postValue(CastDetailViewState.CastDetailViewStateLoading) }
+            .doOnError { t -> castDetailViewState.postValue(CastDetailViewState.CastDetailViewStateFail(t.localizedMessage)) }
+            .subscribe { t -> castDetailViewState.postValue(CastDetailViewState.CastDetailViewStateSuccess(t)) }
     }
 
     override fun onCleared() {

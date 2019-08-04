@@ -11,6 +11,7 @@ import com.nwt.first_kotlin_test.vos.MovieVO
 class UpcomingMoviesAdapter(context : Context,clickMovieDetail: ClickMovieDetail) : BaseRecyclerAdapter<UpcomingViewHolder,MovieVO>(context){
 
     var mCLickDetail : ClickMovieDetail = clickMovieDetail
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpcomingViewHolder {
         val view : View = layoutInflater.inflate(R.layout.movie_card,parent,false)
         return UpcomingViewHolder(view,mCLickDetail)

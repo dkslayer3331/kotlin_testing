@@ -1,6 +1,7 @@
 package com.nwt.first_kotlin_test.activities
 
 import android.app.ProgressDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html.FROM_HTML_MODE_LEGACY
@@ -8,10 +9,11 @@ import androidx.core.text.HtmlCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
+import com.nwt.first_kotlin_test.Activities.ActorDetailActivity
 import com.nwt.first_kotlin_test.adapters.CastAdapter
 import com.nwt.first_kotlin_test.adapters.GenreAdapter
 import com.nwt.first_kotlin_test.delegates.ClickCastDetail
-import com.nwt.first_kotlin_test.DetailViewState
+import com.nwt.first_kotlin_test.ViewState.DetailViewState
 import com.nwt.first_kotlin_test.R
 import com.nwt.first_kotlin_test.utils.toast
 import com.nwt.first_kotlin_test.data.viewmodels.AppViewModel
@@ -22,7 +24,9 @@ import kotlinx.android.synthetic.main.activity_movie_detail.*
 class MovieDetailActivity : AppCompatActivity(),ClickCastDetail {
 
     override fun onTapCast(castVO: CastVO?) {
-            
+        val intent  = Intent(this, ActorDetailActivity::class.java)
+        intent.putExtra("cast_id",castVO?.castId)
+        startActivity(intent)
     }
 
     lateinit var dialog : ProgressDialog

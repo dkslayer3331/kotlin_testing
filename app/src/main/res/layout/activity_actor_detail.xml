@@ -15,6 +15,7 @@
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"/>
+
     <TextView
             android:text="TextView"
             android:layout_width="wrap_content"
@@ -23,6 +24,7 @@
             app:layout_constraintTop_toBottomOf="@+id/actor_profile"
             app:layout_constraintStart_toStartOf="@+id/actor_profile"
             app:layout_constraintEnd_toEndOf="@+id/actor_profile" android:layout_marginTop="16dp"/>
+
     <TextView
             android:text="TextView"
             android:layout_width="0dp"
@@ -32,8 +34,9 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:padding="10dp"
     />
+
     <TextView
-            android:text="@string/known_for_caption"
+            tools:text="@string/known_for_caption"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/known_for_caption"
@@ -41,11 +44,15 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             android:textStyle="bold" android:padding="10dp"/>
+
     <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/known_for_caption"
             android:id="@+id/cast_known_movies_rv"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

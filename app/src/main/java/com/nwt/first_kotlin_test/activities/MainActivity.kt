@@ -6,21 +6,28 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.nwt.first_kotlin_test.Activities.ActorDetailActivity
 import com.nwt.first_kotlin_test.adapters.PopularMoviesAdapter
 import com.nwt.first_kotlin_test.adapters.UpcomingMoviesAdapter
 import com.nwt.first_kotlin_test.delegates.ClickMovieDetail
-import com.nwt.first_kotlin_test.MainViewState
+import com.nwt.first_kotlin_test.ViewState.MainViewState
 import com.nwt.first_kotlin_test.R
 import com.nwt.first_kotlin_test.utils.toast
 import com.nwt.first_kotlin_test.data.viewmodels.AppViewModel
+import com.nwt.first_kotlin_test.delegates.ClickCastDetail
+import com.nwt.first_kotlin_test.vos.CastVO
 import com.nwt.first_kotlin_test.vos.MovieVO
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), ClickMovieDetail {
+class MainActivity : AppCompatActivity(), ClickMovieDetail,ClickCastDetail {
+
+    override fun onTapCast(castVO: CastVO?) {
+        val intent  = Intent(this,ActorDetailActivity::class.java)
+        intent.putExtra("cast_id",castVO?.castId)
+        startActivity(intent)
+    }
 
     var showDialogPopular : Boolean = true
-
-    var showDialogUpcoming : Boolean = true
 
     override fun onTap(movieVO: MovieVO?) {
         //Timber.d("id : %d",movieVO?.movieId)

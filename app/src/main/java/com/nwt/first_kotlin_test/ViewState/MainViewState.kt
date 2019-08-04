@@ -1,4 +1,4 @@
-package com.nwt.first_kotlin_test
+package com.nwt.first_kotlin_test.ViewState
 
 import com.nwt.first_kotlin_test.vos.MovieVO
 
