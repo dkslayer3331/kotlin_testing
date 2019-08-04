@@ -3,10 +3,10 @@ package com.nwt.first_kotlin_test.data.viewmodels
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.nwt.first_kotlin_test.ViewState.CastDetailViewState
-import com.nwt.first_kotlin_test.ViewState.DetailViewState
-import com.nwt.first_kotlin_test.ViewState.MainViewState
-import com.nwt.first_kotlin_test.ViewState.UpcomingViewState
+import com.nwt.first_kotlin_test.viewState.CastDetailViewState
+import com.nwt.first_kotlin_test.viewState.DetailViewState
+import com.nwt.first_kotlin_test.viewState.MainViewState
+import com.nwt.first_kotlin_test.viewState.UpcomingViewState
 import com.nwt.first_kotlin_test.data.repository.MoviesRepository
 import com.nwt.first_kotlin_test.data.db.AppDatabase
 import com.nwt.first_kotlin_test.vos.MovieVO

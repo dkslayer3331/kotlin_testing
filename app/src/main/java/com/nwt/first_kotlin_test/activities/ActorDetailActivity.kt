@@ -1,17 +1,17 @@
-package com.nwt.first_kotlin_test.Activities
+package com.nwt.first_kotlin_test.activities
 
 import android.app.ProgressDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
+import android.text.Html
+import android.text.Html.FROM_HTML_MODE_LEGACY
+import androidx.core.text.HtmlCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.nwt.first_kotlin_test.R
-import com.nwt.first_kotlin_test.ViewState.CastDetailViewState
-import com.nwt.first_kotlin_test.activities.MovieDetailActivity
+import com.nwt.first_kotlin_test.viewState.CastDetailViewState
 import com.nwt.first_kotlin_test.adapters.PopularMoviesAdapter
 import com.nwt.first_kotlin_test.data.viewmodels.AppViewModel
 import com.nwt.first_kotlin_test.delegates.ClickCastDetail
@@ -20,20 +20,19 @@ import com.nwt.first_kotlin_test.utils.toast
 import com.nwt.first_kotlin_test.vos.CastVO
 import com.nwt.first_kotlin_test.vos.MovieVO
 import kotlinx.android.synthetic.main.activity_actor_detail.*
+import kotlinx.android.synthetic.main.activity_movie_detail.*
 
-class ActorDetailActivity : AppCompatActivity(),ClickMovieDetail,ClickCastDetail{
+class ActorDetailActivity : AppCompatActivity(),ClickMovieDetail{
 
-    override fun onTapCast(castVO: CastVO?) {
-        val intent  = Intent(this,ActorDetailActivity::class.java)
-        intent.putExtra("cast_id",castVO?.castId)
-        startActivity(intent)
-    }
+//    override fun onTapCast(castVO: CastVO?) {
+//        val intent  = Intent(this,ActorDetailActivity::class.java)
+//        intent.putExtra("cast_id",castVO?.castId)
+//        startActivity(intent)
+//    }
 
     lateinit var appViewModel : AppViewModel
 
     lateinit var movieAdapter : PopularMoviesAdapter
-
-    lateinit var movie_rv : RecyclerView
 
     lateinit var dialog : ProgressDialog
 
@@ -46,22 +45,38 @@ class ActorDetailActivity : AppCompatActivity(),ClickMovieDetail,ClickCastDetail
     fun setupView(castVO: CastVO?){
 
         Glide.with(this@ActorDetailActivity)
-            .load(castVO?.profilePath)
+            .load("http://image.tmdb.org/t/p/w300"+castVO?.profilePath)
             .into(actor_profile)
 
-        actor_name.text = castVO?.name
+        actor_name.text = HtmlCompat.fromHtml(getString(R.string.actor_name,castVO?.name),FROM_HTML_MODE_LEGACY)
+
+        about_actor.text = castVO?.bio
 
         movieAdapter.setNewData(castVO?.movie_credits?.known_movies)
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if(dialog.isShowing) dialog.dismiss()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if(dialog.isShowing) dialog.dismiss()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_actor_detail)
 
+        known_for_caption.text = HtmlCompat.fromHtml(getString(R.string.known_for_caption), Html.FROM_HTML_MODE_LEGACY)
+
+        dialog = ProgressDialog(this@ActorDetailActivity)
+
         appViewModel = ViewModelProviders.of(this).get(AppViewModel::class.java)
 
-       val castId = intent.getLongExtra("cast_id",0)
+       var castId = intent.getLongExtra("cast_id",0)
 
         appViewModel.getCastDetail(castId) // call to obseve livedata state
 
@@ -71,7 +86,7 @@ class ActorDetailActivity : AppCompatActivity(),ClickMovieDetail,ClickCastDetail
 
         movieAdapter = PopularMoviesAdapter(this,this)
 
-        movie_rv.adapter = movieAdapter
+        cast_known_movies_rv.adapter = movieAdapter
 
     }
 

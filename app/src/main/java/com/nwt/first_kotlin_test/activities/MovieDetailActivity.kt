@@ -5,15 +5,15 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Html.FROM_HTML_MODE_LEGACY
+import android.util.Log
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
-import com.nwt.first_kotlin_test.Activities.ActorDetailActivity
 import com.nwt.first_kotlin_test.adapters.CastAdapter
 import com.nwt.first_kotlin_test.adapters.GenreAdapter
 import com.nwt.first_kotlin_test.delegates.ClickCastDetail
-import com.nwt.first_kotlin_test.ViewState.DetailViewState
+import com.nwt.first_kotlin_test.viewState.DetailViewState
 import com.nwt.first_kotlin_test.R
 import com.nwt.first_kotlin_test.utils.toast
 import com.nwt.first_kotlin_test.data.viewmodels.AppViewModel
@@ -25,7 +25,8 @@ class MovieDetailActivity : AppCompatActivity(),ClickCastDetail {
 
     override fun onTapCast(castVO: CastVO?) {
         val intent  = Intent(this, ActorDetailActivity::class.java)
-        intent.putExtra("cast_id",castVO?.castId)
+        println("castId inside movie detail :"+castVO?.id)
+        intent.putExtra("cast_id",castVO?.id)
         startActivity(intent)
     }
 
@@ -81,6 +82,16 @@ class MovieDetailActivity : AppCompatActivity(),ClickCastDetail {
     }
 
     lateinit var appViewModel : AppViewModel
+
+    override fun onPause() {
+        super.onPause()
+       if(dialog.isShowing) dialog.dismiss()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+       if(dialog.isShowing) dialog.dismiss()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

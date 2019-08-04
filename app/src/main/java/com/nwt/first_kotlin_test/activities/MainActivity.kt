@@ -6,11 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.nwt.first_kotlin_test.Activities.ActorDetailActivity
 import com.nwt.first_kotlin_test.adapters.PopularMoviesAdapter
 import com.nwt.first_kotlin_test.adapters.UpcomingMoviesAdapter
 import com.nwt.first_kotlin_test.delegates.ClickMovieDetail
-import com.nwt.first_kotlin_test.ViewState.MainViewState
+import com.nwt.first_kotlin_test.viewState.MainViewState
 import com.nwt.first_kotlin_test.R
 import com.nwt.first_kotlin_test.utils.toast
 import com.nwt.first_kotlin_test.data.viewmodels.AppViewModel
@@ -83,7 +82,6 @@ class MainActivity : AppCompatActivity(), ClickMovieDetail,ClickCastDetail {
 
 
     private fun renderPopularMovieLoadingState() {
-        showDialogPopular = true
         showLoading()
     }
 

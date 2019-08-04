@@ -1,7 +1,6 @@
-package com.nwt.first_kotlin_test.ViewState
+package com.nwt.first_kotlin_test.viewState
 
 import com.nwt.first_kotlin_test.vos.CastVO
-import com.nwt.first_kotlin_test.vos.MovieVO
 
 sealed class CastDetailViewState {
 
