@@ -15,9 +15,7 @@ import io.reactivex.schedulers.Schedulers
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class AppViewModel(application: Application) : ViewModel(),KoinComponent {
-
-  val moviesRepository : MoviesRepository by inject()
+class AppViewModel constructor(private val moviesRepository : MoviesRepository) : ViewModel(){
 
     var viewState : MutableLiveData<MainViewState> = MutableLiveData()
 

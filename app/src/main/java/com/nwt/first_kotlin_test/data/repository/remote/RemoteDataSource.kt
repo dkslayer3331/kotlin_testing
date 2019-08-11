@@ -8,22 +8,7 @@ import io.reactivex.Observable
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class RemoteDataSource : KoinComponent {
-
-    val movieAPI : MoviesAPI by inject()
-
-//    companion object{
-//        var objInstance : RemoteDataSource? = null
-//
-//        val instance:RemoteDataSource
-//        get() {
-//            if (objInstance == null){
-//                objInstance =
-//                    RemoteDataSource()
-//            }
-//            return objInstance!!
-//        }
-//    }
+class RemoteDataSource constructor(private val movieAPI : MoviesAPI ) {
 
     fun getPopularMovies() : Observable<MovieListVO>{
         return movieAPI.getPopularMovies("a7fc563ba6989aec1e19d62d2d1985c9")

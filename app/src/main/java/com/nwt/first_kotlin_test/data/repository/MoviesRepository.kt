@@ -11,11 +11,10 @@ import io.reactivex.schedulers.Schedulers
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class MoviesRepository : KoinComponent{
+class MoviesRepository constructor(
+    private val localDataSource : LocalDataSource,
+    private val remoteDataSource : RemoteDataSource){
     //koin inject
-
-    val localDataSource : LocalDataSource by inject()
-    val remoteDataSource : RemoteDataSource by inject()
 
     fun getPopularMovies() : Observable<MovieListVO>{
         return remoteDataSource.getPopularMovies()

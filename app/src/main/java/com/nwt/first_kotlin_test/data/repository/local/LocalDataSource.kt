@@ -7,11 +7,9 @@ import io.reactivex.Observable
 import org.koin.core.KoinComponent
 import org.koin.core.inject
 
-class LocalDataSource : KoinComponent {
+class LocalDataSource constructor(private val db : AppDatabase) {
 
     //koin inject
-
-    val db : AppDatabase by inject()
 
     fun getAllFavMovies() : Observable<List<FavMovieVO>>?{
         return  db.favDao().getAllFavMovies()
