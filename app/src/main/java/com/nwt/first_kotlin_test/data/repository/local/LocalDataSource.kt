@@ -1,44 +1,32 @@
 package com.nwt.first_kotlin_test.data.repository.local
 
+import com.nwt.first_kotlin_test.data.db.AppDatabase
 import com.nwt.first_kotlin_test.data.db.MoviesDao
 import com.nwt.first_kotlin_test.vos.FavMovieVO
 import io.reactivex.Observable
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class LocalDataSource private constructor(favDao: MoviesDao){
+class LocalDataSource : KoinComponent {
 
-    var favDao : MoviesDao? = null
+    //koin inject
 
-    init {
-        this.favDao = favDao
-    }
-
-    companion object{
-        var objInstance : LocalDataSource? = null
-
-        fun getInstance(favDao: MoviesDao) : LocalDataSource {
-            if (objInstance == null){
-                objInstance = LocalDataSource(favDao)
-            }
-
-            return objInstance!!
-        }
-
-    }
+    val db : AppDatabase by inject()
 
     fun getAllFavMovies() : Observable<List<FavMovieVO>>?{
-        return favDao?.getAllFavMovies()
+        return  db.favDao().getAllFavMovies()
     }
 
     fun clearAllFavMovies(){
-        favDao?.clearAllFavMovies()
+        db?.favDao()?.clearAllFavMovies()
     }
 
     fun addFavMovie(movieVO: FavMovieVO){
-        favDao?.addFavMovie(movieVO)
+        db?.favDao()?.addFavMovie(movieVO)
     }
 
     fun removeFavMovieById(id : Long){
-        favDao?.removeFavMovieById(id)
+        db?.favDao()?.removeFavMovieById(id)
     }
 
 }

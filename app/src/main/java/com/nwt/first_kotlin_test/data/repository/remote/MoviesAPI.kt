@@ -4,6 +4,7 @@ import com.nwt.first_kotlin_test.vos.CastVO
 import com.nwt.first_kotlin_test.vos.MovieListVO
 import com.nwt.first_kotlin_test.vos.MovieVO
 import io.reactivex.Observable
+import org.koin.core.KoinComponent
 import retrofit2.http.GET
 import retrofit2.http.Query
 import retrofit2.http.Path

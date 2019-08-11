@@ -17,6 +17,7 @@ import com.nwt.first_kotlin_test.delegates.ClickCastDetail
 import com.nwt.first_kotlin_test.vos.CastVO
 import com.nwt.first_kotlin_test.vos.MovieVO
 import kotlinx.android.synthetic.main.activity_main.*
+import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity(), ClickMovieDetail,ClickCastDetail {
 
@@ -26,8 +27,6 @@ class MainActivity : AppCompatActivity(), ClickMovieDetail,ClickCastDetail {
         startActivity(intent)
     }
 
-    var showDialogPopular : Boolean = true
-
     override fun onTap(movieVO: MovieVO?) {
         //Timber.d("id : %d",movieVO?.movieId)
         val intent = Intent(this, MovieDetailActivity::class.java)
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity(), ClickMovieDetail,ClickCastDetail {
         startActivity(intent)
     }
 
-    lateinit var appViewModel: AppViewModel
+   val appViewModel: AppViewModel by inject()
 
     //lateinit var loadingDialog : ProgressDialog
 
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity(), ClickMovieDetail,ClickCastDetail {
 
         progressDialog = ProgressDialog(this@MainActivity)
 
-        appViewModel = ViewModelProviders.of(this).get(AppViewModel::class.java)
+        //appViewModel = ViewModelProviders.of(this).get(AppViewModel::class.java)
 
         popularMoviesAdapter = PopularMoviesAdapter(this, this)
 

@@ -21,6 +21,7 @@ import com.nwt.first_kotlin_test.vos.CastVO
 import com.nwt.first_kotlin_test.vos.MovieVO
 import kotlinx.android.synthetic.main.activity_actor_detail.*
 import kotlinx.android.synthetic.main.activity_movie_detail.*
+import org.koin.android.ext.android.inject
 
 class ActorDetailActivity : AppCompatActivity(),ClickMovieDetail{
 
@@ -30,7 +31,7 @@ class ActorDetailActivity : AppCompatActivity(),ClickMovieDetail{
 //        startActivity(intent)
 //    }
 
-    lateinit var appViewModel : AppViewModel
+    val appViewModel : AppViewModel by inject()
 
     lateinit var movieAdapter : PopularMoviesAdapter
 
@@ -74,7 +75,7 @@ class ActorDetailActivity : AppCompatActivity(),ClickMovieDetail{
 
         dialog = ProgressDialog(this@ActorDetailActivity)
 
-        appViewModel = ViewModelProviders.of(this).get(AppViewModel::class.java)
+       // appViewModel = ViewModelProviders.of(this).get(AppViewModel::class.java)
 
        var castId = intent.getLongExtra("cast_id",0)
 

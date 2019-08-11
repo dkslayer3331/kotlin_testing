@@ -1,31 +1,29 @@
 package com.nwt.first_kotlin_test.data.repository.remote
 
-import com.nwt.first_kotlin_test.utils.RetrofitUtils
+import androidx.lifecycle.ReportFragment
 import com.nwt.first_kotlin_test.vos.CastVO
 import com.nwt.first_kotlin_test.vos.MovieListVO
 import com.nwt.first_kotlin_test.vos.MovieVO
 import io.reactivex.Observable
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class RemoteDataSource {
+class RemoteDataSource : KoinComponent {
 
-    val movieAPI : MoviesAPI
+    val movieAPI : MoviesAPI by inject()
 
-    init {
-        movieAPI = RetrofitUtils.instance.retrofit.create(MoviesAPI::class.java)
-    }
-
-    companion object{
-        var objInstance : RemoteDataSource? = null
-
-        val instance:RemoteDataSource
-        get() {
-            if (objInstance == null){
-                objInstance =
-                    RemoteDataSource()
-            }
-            return objInstance!!
-        }
-    }
+//    companion object{
+//        var objInstance : RemoteDataSource? = null
+//
+//        val instance:RemoteDataSource
+//        get() {
+//            if (objInstance == null){
+//                objInstance =
+//                    RemoteDataSource()
+//            }
+//            return objInstance!!
+//        }
+//    }
 
     fun getPopularMovies() : Observable<MovieListVO>{
         return movieAPI.getPopularMovies("a7fc563ba6989aec1e19d62d2d1985c9")

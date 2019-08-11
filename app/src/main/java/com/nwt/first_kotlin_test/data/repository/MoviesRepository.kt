@@ -8,24 +8,14 @@ import com.nwt.first_kotlin_test.vos.MovieListVO
 import com.nwt.first_kotlin_test.vos.MovieVO
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-class MoviesRepository private constructor(localDataSource: LocalDataSource,remoteDataSource: RemoteDataSource){
+class MoviesRepository : KoinComponent{
+    //koin inject
 
-    var localDataSource : LocalDataSource = localDataSource
-    var remoteDataSource : RemoteDataSource = remoteDataSource
-
-    companion object{
-        var objInstance : MoviesRepository? = null
-
-        fun getInstance(dao: MoviesDao):MoviesRepository{
-            if(objInstance == null){
-                objInstance = MoviesRepository(LocalDataSource.getInstance(dao), RemoteDataSource.instance)
-            }
-
-                return objInstance!!
-        }
-
-    }
+    val localDataSource : LocalDataSource by inject()
+    val remoteDataSource : RemoteDataSource by inject()
 
     fun getPopularMovies() : Observable<MovieListVO>{
         return remoteDataSource.getPopularMovies()

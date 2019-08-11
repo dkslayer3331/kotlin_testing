@@ -20,6 +20,7 @@ import com.nwt.first_kotlin_test.data.viewmodels.AppViewModel
 import com.nwt.first_kotlin_test.vos.CastVO
 import com.nwt.first_kotlin_test.vos.MovieVO
 import kotlinx.android.synthetic.main.activity_movie_detail.*
+import org.koin.android.ext.android.inject
 
 class MovieDetailActivity : AppCompatActivity(),ClickCastDetail {
 
@@ -81,7 +82,7 @@ class MovieDetailActivity : AppCompatActivity(),ClickCastDetail {
         toast(state.message)
     }
 
-    lateinit var appViewModel : AppViewModel
+    val appViewModel : AppViewModel by inject()
 
     override fun onPause() {
         super.onPause()
@@ -109,7 +110,7 @@ class MovieDetailActivity : AppCompatActivity(),ClickCastDetail {
 
         val id : Long = intent.getLongExtra("movie_id",0)
 
-        appViewModel = ViewModelProviders.of(this).get(AppViewModel::class.java)
+       // appViewModel = ViewModelProviders.of(this).get(AppViewModel::class.java)
 
         appViewModel.getMovieDetail(id)
 
