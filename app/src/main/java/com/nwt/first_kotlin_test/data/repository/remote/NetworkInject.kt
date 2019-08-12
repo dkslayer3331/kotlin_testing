@@ -6,15 +6,17 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class NetworkInject {
 
-   private fun provideRetrofit(baseUrl : String) : Retrofit{
+   private fun provideRetrofit() : Retrofit{
         return Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl("https://api.themoviedb.org/3/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
 
     }
 
-    fun provideAPI(baseUrl: String) :  MoviesAPI = provideRetrofit(baseUrl).create(MoviesAPI::class.java)
+    fun provideAPI() :  MoviesAPI {
+        return provideRetrofit().create(MoviesAPI::class.java)
+    }
 
 }

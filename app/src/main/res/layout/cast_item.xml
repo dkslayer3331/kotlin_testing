@@ -29,6 +29,6 @@
             android:background="#808080"
             android:textColor="#C0C0C0"
             android:padding="5dp"
-            tools:text="Taichi Yamato"/>
+            tools:text="Taichi Yamato" android:fontFamily="@font/ubuntu_light"/>
 
 </LinearLayout>

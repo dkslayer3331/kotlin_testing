@@ -18,6 +18,7 @@ import com.nwt.first_kotlin_test.vos.CastVO
 import com.nwt.first_kotlin_test.vos.MovieVO
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.ext.android.inject
+import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity(), ClickMovieDetail,ClickCastDetail {
@@ -35,7 +36,9 @@ class MainActivity : AppCompatActivity(), ClickMovieDetail,ClickCastDetail {
         startActivity(intent)
     }
 
-   val appViewModel: AppViewModel by viewModel()
+  // val appViewModel: AppViewModel by viewModel()
+
+    lateinit var appViewModel : AppViewModel
 
     //lateinit var loadingDialog : ProgressDialog
 
@@ -51,6 +54,8 @@ class MainActivity : AppCompatActivity(), ClickMovieDetail,ClickCastDetail {
         setContentView(R.layout.activity_main)
 
         progressDialog = ProgressDialog(this@MainActivity)
+
+        appViewModel = getViewModel<AppViewModel>()
 
         //appViewModel = ViewModelProviders.of(this).get(AppViewModel::class.java)
 

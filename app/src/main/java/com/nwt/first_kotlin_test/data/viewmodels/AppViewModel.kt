@@ -1,7 +1,5 @@
 package com.nwt.first_kotlin_test.data.viewmodels
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.nwt.first_kotlin_test.viewState.CastDetailViewState
@@ -9,13 +7,10 @@ import com.nwt.first_kotlin_test.viewState.DetailViewState
 import com.nwt.first_kotlin_test.viewState.MainViewState
 import com.nwt.first_kotlin_test.viewState.UpcomingViewState
 import com.nwt.first_kotlin_test.data.repository.MoviesRepository
-import com.nwt.first_kotlin_test.data.db.AppDatabase
 import com.nwt.first_kotlin_test.vos.MovieVO
 import io.reactivex.schedulers.Schedulers
-import org.koin.core.KoinComponent
-import org.koin.core.inject
 
-class AppViewModel constructor(private val moviesRepository : MoviesRepository) : ViewModel(){
+class AppViewModel (private val moviesRepository : MoviesRepository) : ViewModel(){
 
     var viewState : MutableLiveData<MainViewState> = MutableLiveData()
 
